@@ -1,0 +1,17 @@
+These are notes about how I got this booted up. I mostly followed this website:
+
+https://davetang.org/muse/2022/12/07/running-rstudio-server-on-amazon-ec2/
+
+The whole program is that you will create EC2 instance, with an open an ssh port, an open TCP port for the RStudio server, and an SSH key-pair, then update the EC2 instance and install the docker container. Then you just connect from your browser.
+
+1) First you have to spin up an EC2 instance with Ubuntu
+ - this is basically what RStudio and docker both work well on.
+2) Create or use an existing key-pair for SSHing in, which is a quick way to install (no Cloud9)
+3) Pick a gp2 volume of at least 10GB by default, t2.medium.
+4) in the security group, set ssh to 0.0.0.0/0 source, and another TCP to port 8889, with the source as MyIP address.
+5) ssh in with your key, follow the docker.com steps for installing docker on Ubuntu
+6) create an ubuntu user (following D. Tang)
+7) clone dtang's fork (or this one if that one goes away)
+8) run .run_rstudio.sh
+9) find your instance's IP and use port 8889
+10) stop/restart as needed.
